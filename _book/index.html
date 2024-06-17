@@ -1172,7 +1172,7 @@ Figure&nbsp;1.2: A caption!
 <div class="column" style="width:5%;">
 
 </div><div class="column" style="width:65%;">
-<div id="alg-resampling" class="pseudocode-container quarto-float" data-pseudocode-number="1" data-comment-delimiter="//" data-line-number="true" data-line-number-punc=":" data-chapter-level="1" data-no-end="false" data-indent-size="1.2em" data-caption-prefix="Algorithm">
+<div id="alg-resampling" class="pseudocode-container quarto-float" data-chapter-level="1" data-line-number-punc=":" data-no-end="false" data-comment-delimiter="//" data-line-number="true" data-indent-size="1.2em" data-pseudocode-number="1" data-caption-prefix="Algorithm">
 <div class="pseudocode">
 \begin{algorithm} \begin{algorithmic} \State $\mathfrak{D}^{tr}$: training set of predictors $X$ and outcome $y$ \State $B$: number of resamples \State $M(\mathfrak{D}^{tr}, B)$: a mapping function to split $\mathfrak{D}^{tr}$ for each of $B$ iterations. \State $f()$: model pipeline \Procedure{Resample}{$\mathfrak{D}^{tr}, f, M(\mathfrak{D}^{tr}, B)$} \For{$b =1$ \To $B$} \State Partition $\mathfrak{D}^{tr}$ into $\{\mathfrak{D}_b^{fit}, \mathfrak{D}_b^{prd}\}$ using $M_b(\mathfrak{D}^{tr}, B)$. \State Train model pipeline $f$ on the analysis set to produce $\hat{f}_{b}(\mathfrak{D}_b^{fit})$. \State Generate assessment set predictions $\hat{y}_b$ by applying model $\hat{f}_{b}$ to $\mathfrak{D}_b^{prd}$. \State Estimate performance statistic $\hat{Q}_{b}$. \EndFor \State Compute reampling estimate $\hat{Q} = \sum_{b=1}^B \hat{Q}_{b}$. \Return $\hat{Q}$. \Endprocedure \end{algorithmic} \end{algorithm}
 </div>
