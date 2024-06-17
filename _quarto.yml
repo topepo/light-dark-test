@@ -1,0 +1,41 @@
+project:
+  type: book
+  output-dir: _docs
+
+filters:
+  - shinylive
+  - pseudocode
+
+book:
+  title: "light-dark-test"
+  author: "Max Kuhn"
+  date: "6/11/2024"
+  chapters:
+    - index.qmd
+
+bibliography: references.bib
+
+format:
+  html:
+    theme:
+      light: [simplex, aml4td.scss]
+      dark: [cyborg, aml4td-dark.scss]
+
+crossref:
+  custom:
+    - kind: float
+      reference-prefix: Algorithm
+      key: alg
+
+
+include-after-body:
+  text: |
+    <script type="application/javascript" src="/updateImageSrc.js"></script>
+  
+knitr: 
+  opts_chunk: 
+    dev: [lightsvglite, darksvglite]
+    fig.ext: [.light.svg, .dark.svg]
+
+
+

@@ -1,0 +1,383 @@
+
+# Introduction 
+
+This is an example repo that is used to test (and document) methods for enabling light/dark mode in Quarto documents. 
+
+This page used Quarto version `r system("quarto --version", intern = TRUE)`. 
+
+Our CSS for light and dark mode can be found in `aml4td.scss` and `aml4td-dark.scss`, respectively. In Quarto, set these as 
+
+```{yaml}
+#| eval: false
+
+format:
+  html:
+    theme:
+      light: [simplex, aml4td.scss]
+      dark: [cyborg, aml4td-dark.scss]
+```
+
+Doing this enables the switch in the upper left-hand side of this page (to the right of `light-dark-test` and above the search bar). 
+
+## ggplot2
+
+This repo is to test and modify the instructions for light/dark modes from [this blog post](https://mickael.canouil.fr/posts/2023-05-30-quarto-light-dark/) by Mickaël Canouil.
+
+We set the knitr options to use a `figures` directly to place images. 
+
+Instead of using the default theme for light mode, I've created a plot device function that uses a transparent theme. I also like the dark theme provided by `ggdark::dark_theme_grey()` so I will use that below. 
+
+Here are our light and dark custom devices: 
+
+```{r}
+#| label: darksvglite
+
+library(svglite)
+
+lightsvglite <- function(file, width, height, ...) {
+  on.exit(ggplot2::reset_theme_settings())
+  
+  theme_transparent <- function(...) {
+    
+    ret <- ggplot2::theme_bw(...)
+    
+    transparent_rect <- ggplot2::element_rect(fill = "transparent", colour = NA)
+    ret$panel.background  <- transparent_rect
+    ret$plot.background   <- transparent_rect
+    ret$legend.background <- transparent_rect
+    ret$legend.key        <- transparent_rect
+    
+    ret
+  }
+  
+  ggplot2::theme_set(theme_transparent())
+  ggsave(
+    filename = file, 
+    width = width,
+    height = height,
+    dev = "svg",
+    bg = "transparent",
+    ...
+  )
+}
+
+darksvglite <- function(file, width, height, ...) {
+  on.exit(ggplot2::reset_theme_settings())
+  ggplot2::theme_set(ggdark::dark_theme_grey())
+  ggsave(
+    filename = file, 
+    width = width,
+    height = height,
+    dev = "svg",
+    bg = "transparent",
+    ...
+  )
+}
+```
+
+
+```{r}
+#| label: knitr-ops
+#| include: false
+
+library(gt)
+library(kableExtra)
+library(tidymodels)
+library(patchwork)
+
+knitr::opts_chunk$set(
+  comment = "#>",
+  collapse = TRUE,
+  fig.align = 'center',
+  # fig.path = "figures/",
+  tidy = FALSE,
+  echo = FALSE
+)
+```
+
+Now let's make a plot and see how it turns out: 
+
+```{R}
+#| label: four-panels
+
+day_cols <-  c("lightgrey", "#24FF24FF", "#009292FF",  "#B66DFFFF", 
+               "#6DB6FFFF",  "#920000FF",  "#FFB6DBFF")
+
+delivery_dist <- 
+  deliveries %>% 
+  ggplot(aes(x = distance, time_to_delivery)) +
+  geom_point(alpha = 1 / 10, cex = 1) +
+  labs(y = "Time Until Delivery (min)", x = "Distance (miles)", title = "(a)") +
+  geom_smooth(se = FALSE, col = "red", method = 'gam', formula = y ~ s(x, bs = "cs"))
+
+delivery_day <- 
+  deliveries %>% 
+  ggplot(aes(x = time_to_delivery)) +
+  geom_histogram(col = "transparent", bins = 20)
+
+delivery_time <- 
+  deliveries %>% 
+  ggplot(aes(x = hour, time_to_delivery)) +
+  labs(y = "Time Until Delivery (min)", x = "Order Time (decimal hours)", title = "(b)") +
+  geom_point(alpha = 1 / 10, cex = 1) + 
+  geom_smooth(se = FALSE, col = "red", method = 'gam', formula = y ~ s(x, bs = "cs"))
+
+delivery_time_day <- 
+  deliveries %>% 
+  ggplot(aes(x = hour, time_to_delivery, col = day)) +
+  labs(y = "Time Until Delivery (min)", x = "Order Time (decimal hours)", title = "(d)") +
+  geom_smooth(se = FALSE, method = 'gam', formula = y ~ s(x, bs = "cs")) + 
+  scale_color_manual(values = day_cols)
+ 
+plot_four <- 
+  ( delivery_dist + delivery_time ) / (delivery_day + delivery_time_day) +
+  plot_layout(guides = 'collect')  & 
+  theme(legend.title = element_blank(), legend.position = "bottom")
+
+plot_four
+```
+
+
+## gt tables [unresolved] 
+
+gt has a function for [dark mode](https://jthomasmock.github.io/gtExtras/reference/gt_theme_dark.html) and a general function to style.  
+
+Not sure how to pick up colors from css and there is an [unanswered issue on this in GitHub](https://github.com/rstudio/gt/discussions/1526). 
+
+
+```{r}
+#| label: tbl-gt-cars
+#| echo: true
+#| tbl-cap: "Another caption."
+
+mtcars %>%
+  head() %>% 
+  gt()
+```
+
+## kableExtra tables
+
+This package does have the ability to pick up colors from CSS
+
+
+```{r}
+#| label: tbl-ke-cars
+#| echo: true
+#| tbl-cap: "Another caption."
+
+mtcars %>%
+  head() %>% 
+  kbl() %>% 
+  kable_styling(bootstrap_options = "responsive", full_width = FALSE)
+```
+
+
+## Including pre-made images [unresolved] 
+
+I usually add pre-made images via `knitr::include_graphics()`. I don't see any way to be able to change between light- and dark-friendly versions of the image. 
+
+```{r}
+#| label: fig-gif
+#| echo: true
+#| fig-align: center
+#| out-width: 50%
+#| fig-cap: Turn, turn, turn. 
+
+knitr::include_graphics("anime_barley_pca.gif")
+```
+
+
+## shinylive
+
+The [Quarto extension](https://github.com/quarto-ext/shinylive)
+
+Some of this falls on the bslib package function [`input_dark_mode()`](https://rstudio.github.io/bslib/reference/input_dark_mode.html), the thematic package's [`thematic_shiny()`](https://rstudio.github.io/thematic/reference/thematic_on.html), as well as theming for ggplot visualizations (I'm not sure about lattice or base R plotting code). 
+
+First, in your UI code, `bslib::input_dark_mode()` puts a button in your app to move between light and dark modes. 
+
+Second, adding `thematic::thematic_shiny()` to your app (anywhere) will allow shiny to change the appearance of the results depending on the light.dark mode. 
+
+Finally, it also helps to use a ggplot theme that has transparency in the background elements (as we did above) and choosing good colors that are both helpful to colorblindness but also work well in both dark and light mode. 
+
+### An example
+
+Here is an example of a shiny app that has a dark mode button and a ggplot visualization that changes with the mode. 
+
+
+::: {#fig-interaction-contours}
+
+::: {.figure-content}
+
+```{shinylive-r}
+#| label: fig-interaction-contours
+#| viewerHeight: 600
+#| standalone: true
+#| echo: true
+
+library(shiny)
+library(ggplot2)
+library(bslib)
+library(thematic)
+library(viridis)
+
+# source("https://raw.githubusercontent.com/aml4td/website/dark-mode/R/shiny-setup.R")
+ui <- page_fillable(
+  theme = bs_theme(),   #<- this is new
+  padding = "1rem",
+  bslib::input_dark_mode(),
+  layout_columns(
+    fill = FALSE,
+    col_widths = breakpoints(xs = c(-2, 8, -2), sm = 4),
+    sliderInput(
+      "beta_1",
+      label = "Predictor 1 slope",
+      min = -4.0,
+      max = 4.0,
+      step = 0.5,
+      value = 1
+    ),
+    sliderInput(
+      "beta_2",
+      label = "Predictor 2 slope",
+      min = -4.0,
+      max = 4.0,
+      step = 0.5,
+      value = 1
+    ),
+    sliderInput(
+      "beta_int",
+      label = "Interaction slope",
+      min = -2.0,
+      max = 2.0,
+      step = 0.25,
+      value = 0.5
+    )
+  ),
+  as_fill_carrier(plotOutput("contours"))
+)
+
+server <- function(input, output) {
+  
+  #  Not required but helps
+  theme_transparent <- function(...) {
+    
+    ret <- ggplot2::theme_bw(...)
+    
+    transparent_rect <- ggplot2::element_rect(fill = "transparent", colour = NA)
+    ret$panel.background  <- transparent_rect
+    ret$plot.background   <- transparent_rect
+    ret$legend.background <- transparent_rect
+    ret$legend.key        <- transparent_rect
+    
+    ret
+  }
+  
+  theme_set(theme_transparent())
+  
+  # ------------------------------------------------------------------------------
+
+  n_grid <- 100
+  grid_1d <- seq(-1, 1, length.out = n_grid)
+  grid <- expand.grid(A = grid_1d, B = grid_1d)
+  
+  output$contours <-
+    renderPlot({
+
+      grid$outcome <-
+        input$beta_1 * grid$A + input$beta_2 * grid$B +
+        input$beta_int * grid$A * grid$B
+
+      p <-
+        ggplot(grid, aes(A, B)) +
+        coord_equal() +
+        labs(x = "Predictor 1", y = "Predictor 1")
+
+      if (length(unique(grid$outcome)) >= 15) {
+        p <- p +
+          geom_contour_filled(aes(z = scale(outcome)), bins = 15, show.legend = FALSE) +
+          scale_fill_viridis_d(option = "G")
+      }
+
+      print(p)
+
+    })
+}
+
+app <- shinyApp(ui, server)
+
+thematic_shiny()  #<- this is new
+
+app
+```
+:::
+
+A caption!
+
+:::
+
+Unfortunately, this requires a second click (and a pause) to have the shinylive app match the mode of the page. 
+
+## Math 
+
+Math coloring appears to be picked up from css: 
+
+$$
+\hat{y}_j = \mu_0 + (\bar{y}_j - \mu_0) \frac{\sigma^2_0}{\frac{1}{n} + \sigma^2_0}
+$$
+
+However, if you use any `\color` invocations, the equation color is fixed across light/dark modes. 
+
+## algorithms
+
+The [Quarto extension](https://github.com/leovan/quarto-pseudocode) picks up the correct formatting. 
+
+
+:::: {#alg-resampling}
+
+::: {.columns}
+
+::: {.column width="5%"}
+
+:::
+
+::: {.column width="65%"}
+
+
+```pseudocode
+#| label: alg-resampling
+#| html-indent-size: "1.2em"
+#| html-comment-delimiter: "//"
+#| html-line-number: true
+#| html-line-number-punc: ":"
+#| html-no-end: false
+\begin{algorithm}
+\begin{algorithmic}
+\State $\mathfrak{D}^{tr}$: training set of predictors $X$ and outcome $y$
+\State $B$: number of resamples
+\State $M(\mathfrak{D}^{tr}, B)$: a mapping function to split $\mathfrak{D}^{tr}$ for each of  $B$ iterations.
+\State $f()$: model pipeline 
+\Procedure{Resample}{$\mathfrak{D}^{tr}, f, M(\mathfrak{D}^{tr}, B)$}
+  \For{$b =1$ \To $B$}
+    \State Partition $\mathfrak{D}^{tr}$ into $\{\mathfrak{D}_b^{fit}, \mathfrak{D}_b^{prd}\}$ using $M_b(\mathfrak{D}^{tr}, B)$.
+    \State Train model pipeline $f$ on the analysis set to produce $\hat{f}_{b}(\mathfrak{D}_b^{fit})$.
+    \State Generate assessment set predictions $\hat{y}_b$ by applying model $\hat{f}_{b}$ to $\mathfrak{D}_b^{prd}$.
+    \State Estimate performance statistic $\hat{Q}_{b}$.
+  \EndFor 
+  \State Compute reampling estimate $\hat{Q} = \sum_{b=1}^B \hat{Q}_{b}$.
+  \Return $\hat{Q}$.
+\Endprocedure
+\end{algorithmic}
+\end{algorithm}
+```
+
+:::
+
+::: {.column width="15%"}
+
+:::
+
+::: 
+
+Resampling models to estimate performance. 
+
+::::
