@@ -183,8 +183,23 @@ I usually add pre-made images via `knitr::include_graphics()`. I don't see any w
 #| out-width: 50%
 #| fig-cap: Turn, turn, turn. 
 
-knitr::include_graphics("anime_barley_pca.gif")
+knitr::include_graphics("figures/four-panels-1..light.svg")
 ```
+
+
+An approach that doesn't work (yet): 
+<details>
+
+fallback is a diagram
+
+The following doesn't work since this bootstrap variable is in bootstrap 5.3.0 and quarto currently uses 5.1.0.
+
+<picture>
+  <source media='(data-bs-theme:dark)' srcset="https://raw.githubusercontent.com/topepo/light-dark-test/main/figures/four-panels-1..dark.svg">
+  <source media="(data-bs-theme:light)" srcset="https://raw.githubusercontent.com/topepo/light-dark-test/main/figures/four-panels-1..light.svg">
+  <img src="https://raw.githubusercontent.com/aml4td/website/main/premade/overall_process_validation.svg">
+</picture>
+</details>
 
 
 ## shinylive
