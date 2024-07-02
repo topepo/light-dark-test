@@ -8,6 +8,7 @@ $dark-grey:             #121212;
 $aliceblue:             #f0f8ff;
 $muted-black:           #595959;
 $tangerine:             #F28500;
+$light-orange:          #ff7c47;
 $scarlet:               #B32800;
 $brewer-set1-blue:      #377EB8;
 $blue-screen-o-death:   #0031b3;
@@ -24,7 +25,7 @@ $toc-font-size: .7rem;
 /*-- scss:rules --*/
 
 h1, h2, h3, h4 {
-  color: $tangerine;
+  color: $light-orange;
 }
 
 // make the LHS sidebar text smaller
@@ -45,7 +46,7 @@ h1, h2, h3, h4 {
 }
 
 .header-section-number {
-  color: $tangerine;
+  color: $light-orange;
 }
 
 code {

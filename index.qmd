@@ -219,7 +219,7 @@ Here's a working example using existing code:
 #| label: fig-light
 #| echo: false
 #| fig-align: center
-#| out-width: 80%
+#| out-width: 100%
 
 knitr::include_graphics("model-devel-light.svg")
 ```
@@ -232,7 +232,7 @@ knitr::include_graphics("model-devel-light.svg")
 #| label: fig-dark
 #| echo: false
 #| fig-align: center
-#| out-width: 80%
+#| out-width: 100%
 
 knitr::include_graphics("model-devel-dark.svg")
 ```
