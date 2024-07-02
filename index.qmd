@@ -221,7 +221,7 @@ Here's a working example using existing code:
 #| fig-align: center
 #| out-width: 80%
 
-knitr::include_graphics("figures/four-panels-1..light.svg")
+knitr::include_graphics("model-devel-light.svg")
 ```
 
 :::
@@ -234,7 +234,7 @@ knitr::include_graphics("figures/four-panels-1..light.svg")
 #| fig-align: center
 #| out-width: 80%
 
-knitr::include_graphics("figures/four-panels-1..dark.svg")
+knitr::include_graphics("model-devel-dark.svg")
 ```
 
 :::
