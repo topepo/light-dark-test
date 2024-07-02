@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.5.22">
+<meta name="generator" content="quarto-1.6.0">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -35,7 +35,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -114,7 +114,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/kePrint-0.0.1/kePrint.js"></script>
 <link href="site_libs/lightable-0.0.1/lightable.css" rel="stylesheet">
 
-  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 <script type="text/javascript">
@@ -152,13 +152,13 @@ window.Quarto = {
   <header id="quarto-header" class="headroom fixed-top">
   <nav class="quarto-secondary-nav">
     <div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
         <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./index.html"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></a></li></ol></nav>
-        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
-      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
       </button>
     </div>
@@ -204,7 +204,7 @@ window.Quarto = {
   <li><a href="#ggplot2" id="toc-ggplot2" class="nav-link" data-scroll-target="#ggplot2"><span class="header-section-number">1.1</span> ggplot2</a></li>
   <li><a href="#gt-tables-unresolved" id="toc-gt-tables-unresolved" class="nav-link" data-scroll-target="#gt-tables-unresolved"><span class="header-section-number">1.2</span> gt tables [unresolved]</a></li>
   <li><a href="#kableextra-tables" id="toc-kableextra-tables" class="nav-link" data-scroll-target="#kableextra-tables"><span class="header-section-number">1.3</span> kableExtra tables</a></li>
-  <li><a href="#including-pre-made-images-unresolved" id="toc-including-pre-made-images-unresolved" class="nav-link" data-scroll-target="#including-pre-made-images-unresolved"><span class="header-section-number">1.4</span> Including pre-made images [unresolved]</a></li>
+  <li><a href="#including-pre-made-images" id="toc-including-pre-made-images" class="nav-link" data-scroll-target="#including-pre-made-images"><span class="header-section-number">1.4</span> Including pre-made images</a></li>
   <li><a href="#shinylive" id="toc-shinylive" class="nav-link" data-scroll-target="#shinylive"><span class="header-section-number">1.5</span> shinylive</a>
   <ul class="collapse">
   <li><a href="#an-example" id="toc-an-example" class="nav-link" data-scroll-target="#an-example"><span class="header-section-number">1.5.1</span> An example</a></li>
@@ -252,7 +252,7 @@ window.Quarto = {
 <section id="introduction" class="level1" data-number="1">
 <h1 data-number="1"><span class="header-section-number">1</span> Introduction</h1>
 <p>This is an example repo that is used to test (and document) methods for enabling light/dark mode in Quarto documents.</p>
-<p>This page used Quarto version 1.5.22.</p>
+<p>This page used Quarto version 1.6.0.</p>
 <p>Our CSS for light and dark mode can be found in <code>aml4td.scss</code> and <code>aml4td-dark.scss</code>, respectively. In Quarto, set these as</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">format</span><span class="kw">:</span></span>
@@ -330,31 +330,30 @@ window.Quarto = {
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>mtcars <span class="sc">%&gt;%</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>() <span class="sc">%&gt;%</span> </span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gt</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div id="tbl-gt-cars" class="cell quarto-float anchored" data-layout-align="center">
+<div id="tbl-gt-cars" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-layout-align="center">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-gt-cars-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Table&nbsp;1.1: Another caption.
 </figcaption>
 <div aria-describedby="tbl-gt-cars-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
-<div>
-<div id="mmowuddmkj" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#mmowuddmkj table {
+<div id="zdgszfwrwt" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#zdgszfwrwt table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#mmowuddmkj thead, #mmowuddmkj tbody, #mmowuddmkj tfoot, #mmowuddmkj tr, #mmowuddmkj td, #mmowuddmkj th {
+#zdgszfwrwt thead, #zdgszfwrwt tbody, #zdgszfwrwt tfoot, #zdgszfwrwt tr, #zdgszfwrwt td, #zdgszfwrwt th {
   border-style: none;
 }
 
-#mmowuddmkj p {
+#zdgszfwrwt p {
   margin: 0;
   padding: 0;
 }
 
-#mmowuddmkj .gt_table {
+#zdgszfwrwt .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -380,12 +379,12 @@ Table&nbsp;1.1: Another caption.
   border-left-color: #D3D3D3;
 }
 
-#mmowuddmkj .gt_caption {
+#zdgszfwrwt .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#mmowuddmkj .gt_title {
+#zdgszfwrwt .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -397,7 +396,7 @@ Table&nbsp;1.1: Another caption.
   border-bottom-width: 0;
 }
 
-#mmowuddmkj .gt_subtitle {
+#zdgszfwrwt .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -409,7 +408,7 @@ Table&nbsp;1.1: Another caption.
   border-top-width: 0;
 }
 
-#mmowuddmkj .gt_heading {
+#zdgszfwrwt .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -421,13 +420,13 @@ Table&nbsp;1.1: Another caption.
   border-right-color: #D3D3D3;
 }
 
-#mmowuddmkj .gt_bottom_border {
+#zdgszfwrwt .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#mmowuddmkj .gt_col_headings {
+#zdgszfwrwt .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -442,7 +441,7 @@ Table&nbsp;1.1: Another caption.
   border-right-color: #D3D3D3;
 }
 
-#mmowuddmkj .gt_col_heading {
+#zdgszfwrwt .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -462,7 +461,7 @@ Table&nbsp;1.1: Another caption.
   overflow-x: hidden;
 }
 
-#mmowuddmkj .gt_column_spanner_outer {
+#zdgszfwrwt .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -474,15 +473,15 @@ Table&nbsp;1.1: Another caption.
   padding-right: 4px;
 }
 
-#mmowuddmkj .gt_column_spanner_outer:first-child {
+#zdgszfwrwt .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#mmowuddmkj .gt_column_spanner_outer:last-child {
+#zdgszfwrwt .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#mmowuddmkj .gt_column_spanner {
+#zdgszfwrwt .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -494,11 +493,11 @@ Table&nbsp;1.1: Another caption.
   width: 100%;
 }
 
-#mmowuddmkj .gt_spanner_row {
+#zdgszfwrwt .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#mmowuddmkj .gt_group_heading {
+#zdgszfwrwt .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -524,7 +523,7 @@ Table&nbsp;1.1: Another caption.
   text-align: left;
 }
 
-#mmowuddmkj .gt_empty_group_heading {
+#zdgszfwrwt .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -539,15 +538,15 @@ Table&nbsp;1.1: Another caption.
   vertical-align: middle;
 }
 
-#mmowuddmkj .gt_from_md > :first-child {
+#zdgszfwrwt .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#mmowuddmkj .gt_from_md > :last-child {
+#zdgszfwrwt .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#mmowuddmkj .gt_row {
+#zdgszfwrwt .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -566,7 +565,7 @@ Table&nbsp;1.1: Another caption.
   overflow-x: hidden;
 }
 
-#mmowuddmkj .gt_stub {
+#zdgszfwrwt .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -579,7 +578,7 @@ Table&nbsp;1.1: Another caption.
   padding-right: 5px;
 }
 
-#mmowuddmkj .gt_stub_row_group {
+#zdgszfwrwt .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -593,15 +592,15 @@ Table&nbsp;1.1: Another caption.
   vertical-align: top;
 }
 
-#mmowuddmkj .gt_row_group_first td {
+#zdgszfwrwt .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#mmowuddmkj .gt_row_group_first th {
+#zdgszfwrwt .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#mmowuddmkj .gt_summary_row {
+#zdgszfwrwt .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -611,16 +610,16 @@ Table&nbsp;1.1: Another caption.
   padding-right: 5px;
 }
 
-#mmowuddmkj .gt_first_summary_row {
+#zdgszfwrwt .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#mmowuddmkj .gt_first_summary_row.thick {
+#zdgszfwrwt .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#mmowuddmkj .gt_last_summary_row {
+#zdgszfwrwt .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -630,7 +629,7 @@ Table&nbsp;1.1: Another caption.
   border-bottom-color: #D3D3D3;
 }
 
-#mmowuddmkj .gt_grand_summary_row {
+#zdgszfwrwt .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -640,7 +639,7 @@ Table&nbsp;1.1: Another caption.
   padding-right: 5px;
 }
 
-#mmowuddmkj .gt_first_grand_summary_row {
+#zdgszfwrwt .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -650,7 +649,7 @@ Table&nbsp;1.1: Another caption.
   border-top-color: #D3D3D3;
 }
 
-#mmowuddmkj .gt_last_grand_summary_row_top {
+#zdgszfwrwt .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -660,11 +659,11 @@ Table&nbsp;1.1: Another caption.
   border-bottom-color: #D3D3D3;
 }
 
-#mmowuddmkj .gt_striped {
+#zdgszfwrwt .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#mmowuddmkj .gt_table_body {
+#zdgszfwrwt .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -673,7 +672,7 @@ Table&nbsp;1.1: Another caption.
   border-bottom-color: #D3D3D3;
 }
 
-#mmowuddmkj .gt_footnotes {
+#zdgszfwrwt .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -687,7 +686,7 @@ Table&nbsp;1.1: Another caption.
   border-right-color: #D3D3D3;
 }
 
-#mmowuddmkj .gt_footnote {
+#zdgszfwrwt .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -696,7 +695,7 @@ Table&nbsp;1.1: Another caption.
   padding-right: 5px;
 }
 
-#mmowuddmkj .gt_sourcenotes {
+#zdgszfwrwt .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -710,7 +709,7 @@ Table&nbsp;1.1: Another caption.
   border-right-color: #D3D3D3;
 }
 
-#mmowuddmkj .gt_sourcenote {
+#zdgszfwrwt .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -718,68 +717,68 @@ Table&nbsp;1.1: Another caption.
   padding-right: 5px;
 }
 
-#mmowuddmkj .gt_left {
+#zdgszfwrwt .gt_left {
   text-align: left;
 }
 
-#mmowuddmkj .gt_center {
+#zdgszfwrwt .gt_center {
   text-align: center;
 }
 
-#mmowuddmkj .gt_right {
+#zdgszfwrwt .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#mmowuddmkj .gt_font_normal {
+#zdgszfwrwt .gt_font_normal {
   font-weight: normal;
 }
 
-#mmowuddmkj .gt_font_bold {
+#zdgszfwrwt .gt_font_bold {
   font-weight: bold;
 }
 
-#mmowuddmkj .gt_font_italic {
+#zdgszfwrwt .gt_font_italic {
   font-style: italic;
 }
 
-#mmowuddmkj .gt_super {
+#zdgszfwrwt .gt_super {
   font-size: 65%;
 }
 
-#mmowuddmkj .gt_footnote_marks {
+#zdgszfwrwt .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#mmowuddmkj .gt_asterisk {
+#zdgszfwrwt .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#mmowuddmkj .gt_indent_1 {
+#zdgszfwrwt .gt_indent_1 {
   text-indent: 5px;
 }
 
-#mmowuddmkj .gt_indent_2 {
+#zdgszfwrwt .gt_indent_2 {
   text-indent: 10px;
 }
 
-#mmowuddmkj .gt_indent_3 {
+#zdgszfwrwt .gt_indent_3 {
   text-indent: 15px;
 }
 
-#mmowuddmkj .gt_indent_4 {
+#zdgszfwrwt .gt_indent_4 {
   text-indent: 20px;
 }
 
-#mmowuddmkj .gt_indent_5 {
+#zdgszfwrwt .gt_indent_5 {
   text-indent: 25px;
 }
 </style>
 
-<table class="gt_table do-not-create-environment cell table table-sm table-striped small" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+<table class="gt_table do-not-create-environment cell caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
 <thead>
 <tr class="header gt_col_headings">
 <th id="mpg" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">mpg</th>
@@ -880,7 +879,6 @@ Table&nbsp;1.1: Another caption.
 </div>
 </div>
 </div>
-</div>
 </figure>
 </div>
 </div>
@@ -893,16 +891,15 @@ Table&nbsp;1.1: Another caption.
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>() <span class="sc">%&gt;%</span> </span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kbl</span>() <span class="sc">%&gt;%</span> </span>
 <span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable_styling</span>(<span class="at">bootstrap_options =</span> <span class="st">"responsive"</span>, <span class="at">full_width =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div id="tbl-ke-cars" class="cell quarto-float anchored" data-layout-align="center">
+<div id="tbl-ke-cars" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-layout-align="center">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-ke-cars-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Table&nbsp;1.2: Another caption.
 </figcaption>
 <div aria-describedby="tbl-ke-cars-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
-<div>
 <div class="table-responsive">
-<table class="table do-not-create-environment cell table-sm table-striped small" data-quarto-postprocess="true">
+<table class="table do-not-create-environment cell caption-top table-sm table-striped small" data-quarto-postprocess="true">
 <thead>
 <tr class="header">
 <th style="text-align: left;" data-quarto-table-cell-role="th"></th>
@@ -1011,35 +1008,78 @@ Table&nbsp;1.2: Another caption.
 
 </div>
 </div>
-</div>
 </figure>
 </div>
 </div>
 </section>
-<section id="including-pre-made-images-unresolved" class="level2" data-number="1.4">
-<h2 data-number="1.4" class="anchored" data-anchor-id="including-pre-made-images-unresolved"><span class="header-section-number">1.4</span> Including pre-made images [unresolved]</h2>
-<p>I usually add pre-made images via <code>knitr::include_graphics()</code>. I don’t see any way to be able to change between light- and dark-friendly versions of the image.</p>
-<div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">include_graphics</span>(<span class="st">"figures/four-panels-1..light.svg"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<div id="fig-gif" class="quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center">
+<section id="including-pre-made-images" class="level2" data-number="1.4">
+<h2 data-number="1.4" class="anchored" data-anchor-id="including-pre-made-images"><span class="header-section-number">1.4</span> Including pre-made images</h2>
+<p>First, you’ll have to made light and dark versions of the image.</p>
+<p>Garrick Aden-Buie came up with a solution to this using CSS. You can add the following to your <code>scss</code> file:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode css code-with-copy"><code class="sourceCode css"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">.quarto-light</span> <span class="fu">.when-quarto-dark</span> {</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">display</span><span class="ch">:</span> <span class="dv">none</span><span class="op">;</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="fu">.quarto-dark</span> <span class="fu">.when-quarto-light</span> {</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>  <span class="kw">display</span><span class="ch">:</span> <span class="dv">none</span><span class="op">;</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>and use this with fenced divs:</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode html code-with-copy"><code class="sourceCode html"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>::: {#fig-premade-image}</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>::: {.when-quarto-light}</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>code/markup to include light image</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>::: {.when-quarto-dark}</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>code/markup to include dark image</span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>The caption for both light and dark plots.</span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>:::</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Here’s a working example using existing code:</p>
+<div id="fig-premade-image" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-gif-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="figures/four-panels-1..light.svg" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:50.0%">
+<div aria-describedby="fig-premade-image-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="when-quarto-light">
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div id="fig-light" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center" width="80%">
+<figure class="quarto-float quarto-subfloat-fig figure">
+<div aria-describedby="fig-light-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="figures/four-panels-1..light.svg" id="fig-light" class="img-fluid quarto-figure quarto-figure-center anchored figure-img" style="width:80.0%" data-ref-parent="fig-premade-image">
 </div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-gif-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;1.1: Turn, turn, turn.
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-light-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 </figcaption>
 </figure>
 </div>
 </div>
 </div>
-An approach that doesn’t work (yet):
-<details>
-<p>fallback is a diagram</p>
-<p>The following doesn’t work since this bootstrap variable is in bootstrap 5.3.0 and quarto currently uses 5.1.0.</p>
-<picture> <source media="(data-bs-theme:dark)" srcset="https://raw.githubusercontent.com/topepo/light-dark-test/main/figures/four-panels-1..dark.svg"> <source media="(data-bs-theme:light)" srcset="https://raw.githubusercontent.com/topepo/light-dark-test/main/figures/four-panels-1..light.svg"> <img src="https://raw.githubusercontent.com/aml4td/website/main/premade/overall_process_validation.svg"> </picture>
-</details>
+</div>
+<div class="when-quarto-dark">
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div id="fig-dark" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center" width="80%">
+<figure class="quarto-float quarto-subfloat-fig figure">
+<div aria-describedby="fig-dark-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="figures/four-panels-1..dark.svg" id="fig-dark" class="img-fluid quarto-figure quarto-figure-center anchored figure-img" style="width:80.0%" data-ref-parent="fig-premade-image">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-dark-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-premade-image-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1.1: The caption for both light and dark plots.
+</figcaption>
+</figure>
+</div>
 </section>
 <section id="shinylive" class="level2" data-number="1.5">
 <h2 data-number="1.5" class="anchored" data-anchor-id="shinylive"><span class="header-section-number">1.5</span> shinylive</h2>
@@ -1051,7 +1091,7 @@ An approach that doesn’t work (yet):
 <section id="an-example" class="level3" data-number="1.5.1">
 <h3 data-number="1.5.1" class="anchored" data-anchor-id="an-example"><span class="header-section-number">1.5.1</span> An example</h3>
 <p>Here is an example of a shiny app that has a dark mode button and a ggplot visualization that changes with the mode.</p>
-<div id="fig-interaction-contours" class="quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-interaction-contours" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-interaction-contours-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="figure-content">
@@ -1175,14 +1215,14 @@ Figure&nbsp;1.2: A caption!
 <section id="algorithms" class="level2" data-number="1.7">
 <h2 data-number="1.7" class="anchored" data-anchor-id="algorithms"><span class="header-section-number">1.7</span> algorithms</h2>
 <p>The <a href="https://github.com/leovan/quarto-pseudocode">Quarto extension</a> picks up the correct formatting.</p>
-<div id="alg-resampling" class="quarto-float">
+<div id="alg-resampling" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-alg figure">
 <div aria-describedby="alg-resampling-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="columns">
 <div class="column" style="width:5%;">
 
 </div><div class="column" style="width:65%;">
-<div id="alg-resampling" class="pseudocode-container quarto-float" data-pseudocode-number="1" data-chapter-level="1" data-line-number-punc=":" data-comment-delimiter="//" data-line-number="true" data-indent-size="1.2em" data-no-end="false" data-caption-prefix="Algorithm">
+<div id="alg-resampling" class="pseudocode-container quarto-float" data-no-end="false" data-line-number-punc=":" data-pseudocode-number="1" data-line-number="true" data-caption-prefix="Algorithm" data-chapter-level="1" data-comment-delimiter="//" data-indent-size="1.2em">
 <div class="pseudocode">
 \begin{algorithm} \begin{algorithmic} \State $\mathfrak{D}^{tr}$: training set of predictors $X$ and outcome $y$ \State $B$: number of resamples \State $M(\mathfrak{D}^{tr}, B)$: a mapping function to split $\mathfrak{D}^{tr}$ for each of $B$ iterations. \State $f()$: model pipeline \Procedure{Resample}{$\mathfrak{D}^{tr}, f, M(\mathfrak{D}^{tr}, B)$} \For{$b =1$ \To $B$} \State Partition $\mathfrak{D}^{tr}$ into $\{\mathfrak{D}_b^{fit}, \mathfrak{D}_b^{prd}\}$ using $M_b(\mathfrak{D}^{tr}, B)$. \State Train model pipeline $f$ on the analysis set to produce $\hat{f}_{b}(\mathfrak{D}_b^{fit})$. \State Generate assessment set predictions $\hat{y}_b$ by applying model $\hat{f}_{b}$ to $\mathfrak{D}_b^{prd}$. \State Estimate performance statistic $\hat{Q}_{b}$. \EndFor \State Compute reampling estimate $\hat{Q} = \sum_{b=1}^B \hat{Q}_{b}$. \Return $\hat{Q}$. \Endprocedure \end{algorithmic} \end{algorithm}
 </div>
@@ -1382,18 +1422,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
     return false;
   }
-  const clipboard = new window.ClipboardJS('.code-copy-button', {
-    text: function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
-        }
-      }
-      return codeEl.innerText;
-    }
-  });
-  clipboard.on('success', function(e) {
+  const onCopySuccess = function(e) {
     // button target
     const button = e.trigger;
     // don't keep focus
@@ -1425,7 +1454,29 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }, 1000);
     // clear code selection
     e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
   });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
     var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
     var mailtoRegex = new RegExp(/^mailto:/);
       var filterRegex = new RegExp('/' + window.location.host + '/');
@@ -1433,7 +1484,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
     }
     // Inspect non-navigation links and adorn them if external
- 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
     for (var i=0; i<links.length; i++) {
       const link = links[i];
       if (!isInternal(link.href)) {

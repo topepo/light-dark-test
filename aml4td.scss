@@ -159,3 +159,12 @@ code {
 .ps-algorithm {
   text-align: left;
 }
+
+.quarto-light .when-quarto-dark {
+  display: none;
+}
+
+.quarto-dark .when-quarto-light {
+  display: none;
+}
+

@@ -172,34 +172,76 @@ mtcars %>%
 ```
 
 
-## Including pre-made images [unresolved] 
+## Including pre-made images
 
-I usually add pre-made images via `knitr::include_graphics()`. I don't see any way to be able to change between light- and dark-friendly versions of the image. 
+First, you'll have to made light and dark versions of the image.
+
+Garrick Aden-Buie came up with a solution to this using CSS. You can add the following to your `scss` file: 
+
+```css
+.quarto-light .when-quarto-dark {
+  display: none;
+}
+
+.quarto-dark .when-quarto-light {
+  display: none;
+}
+```
+
+and use this with fenced divs: 
+
+```html
+::: {#fig-premade-image}
+
+::: {.when-quarto-light}
+
+code/markup to include light image
+
+:::
+
+::: {.when-quarto-dark}
+
+code/markup to include dark image
+
+:::
+
+The caption for both light and dark plots.
+:::
+```
+
+Here's a working example using existing code: 
+
+::: {#fig-premade-image}
+
+::: {.when-quarto-light}
 
 ```{r}
-#| label: fig-gif
-#| echo: true
+#| label: fig-light
+#| echo: false
 #| fig-align: center
-#| out-width: 50%
-#| fig-cap: Turn, turn, turn. 
+#| out-width: 80%
 
 knitr::include_graphics("figures/four-panels-1..light.svg")
 ```
 
+:::
 
-An approach that doesn't work (yet): 
-<details>
+::: {.when-quarto-dark}
 
-fallback is a diagram
+```{r}
+#| label: fig-dark
+#| echo: false
+#| fig-align: center
+#| out-width: 80%
 
-The following doesn't work since this bootstrap variable is in bootstrap 5.3.0 and quarto currently uses 5.1.0.
+knitr::include_graphics("figures/four-panels-1..dark.svg")
+```
 
-<picture>
-  <source media='(data-bs-theme:dark)' srcset="https://raw.githubusercontent.com/topepo/light-dark-test/main/figures/four-panels-1..dark.svg">
-  <source media="(data-bs-theme:light)" srcset="https://raw.githubusercontent.com/topepo/light-dark-test/main/figures/four-panels-1..light.svg">
-  <img src="https://raw.githubusercontent.com/aml4td/website/main/premade/overall_process_validation.svg">
-</picture>
-</details>
+:::
+
+The caption for both light and dark plots.
+:::
+
 
 
 ## shinylive
