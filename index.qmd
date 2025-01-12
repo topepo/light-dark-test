@@ -84,6 +84,7 @@ library(gt)
 library(kableExtra)
 library(tidymodels)
 library(patchwork)
+library(tinytable)
 
 knitr::opts_chunk$set(
   comment = "#>",
@@ -169,6 +170,22 @@ mtcars %>%
   head() %>% 
   kbl() %>% 
   kable_styling(bootstrap_options = "responsive", full_width = FALSE)
+```
+
+
+## tinytable tables
+
+This package does have the ability to pick up colors from CSS
+
+
+```{r}
+#| label: tbl-tt-cars
+#| echo: true
+#| tbl-cap: "Another caption."
+
+mtcars %>% 
+  head() %>% 
+  tt(theme = "bootstrap")
 ```
 
 
